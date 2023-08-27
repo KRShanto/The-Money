@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    // color on each theme
+    // default theme is dark
+    --bg-color: white;
+    --bg-color-lighter: white;
+    --bg-color-light: white;
+
+    --theme-color: white;
+    --theme-color-light: white;
+
+    --main-color: 0 174 255;
+    --main-color-linear: linear-gradient(
+      45deg,
+      rgb(0, 122, 210),
+      rgb(0, 247, 255)
+    );
+    --main-color-light: 23 37 84;
+    --main-color-dark: 23 37 84;
+  }
+}
+
+@layer components {
+  .bg-main-gradient {
+    background-image: var(--main-color-linear);
+  }
+
+  .text-main-gradient {
+    background: var(--main-color-linear);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-golden-gradient {
+    background-image: linear-gradient(
+      to right,
+      rgb(255, 208, 0),
+      rgb(255, 94, 0)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn {
+    padding: 0.3rem 1.3rem;
+    border-radius: 0.3rem;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+
+    &:active {
+      scale: 0.95;
+    }
+  }
+
+  .btn-main {
+    background-image: var(--main-color-linear);
+  }
+
+  .btn-green {
+    background-image: linear-gradient(
+      to right,
+      rgba(0, 255, 0, 0.5),
+      rgba(0, 255, 0, 0.8)
+    );
+  }
+
+  .btn-orange {
+    background-image: linear-gradient(
+      to right,
+      rgb(255, 166, 0),
+      rgb(255, 106, 0)
+    );
+  }
+
+  .btn-red {
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 0, 0, 0.5),
+      rgba(255, 0, 0, 0.8)
+    );
+  }
+
+  .input-styles {
+    @apply w-full rounded-lg border-2 border-themeColorLight bg-bgColorLight px-4 py-3  text-xl outline-none transition-colors duration-300 ease-in-out focus:border-mainColor max-[1000px]:px-2 max-[1000px]:py-2 max-[1000px]:text-lg max-[600px]:text-base;
+  }
+
+  .input-provider {
+    @apply mx-auto my-2 w-80 justify-between border border-slate-700 bg-zinc-950 px-8 py-4 hover:bg-zinc-800 max-[600px]:w-full;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--theme-color));
+  width: 100vw;
+  height: 100vh;
+}
+
+// On dark theme, it will be light color
+html.dark body {
+  --bg-color: 1 14 28;
+  --bg-color-light: 19 32 56;
+  --bg-color-lighter: 26 42 61;
+
+  --theme-color: 214 212 212;
+  --theme-color-light: 113 113 113;
+}
+
+// On light theme, it will be dark color
+html.light body {
+  --bg-color: 205 205 205;
+  --bg-color-light: 245 243 243;
+
+  --theme-color: 0 0 0;
+  --theme-color-light: 166 166 166;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
