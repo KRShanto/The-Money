@@ -33,13 +33,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className + " flex flex-col"}>
         <Providers>
           <NextTopLoader color="cyan" height={4} showSpinner={false} />
           <PopupState />
           <Navbar />
 
-          <main>{children}</main>
+          <main className="flex-1">{children}</main>
 
           <Footer />
         </Providers>
