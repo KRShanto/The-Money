@@ -8,7 +8,7 @@ export interface MoneyType {
     // if friend
     id?: string;
   };
-  type: "income" | "expense" | "gift" | "loan" | "borrow" | "sell";
+  type: MoneyTypeTYpe;
   amount: number;
   description: string;
   createdAt: Date;
@@ -20,3 +20,11 @@ export interface MoneyType {
   // last date of this money. Only applicable for loan and borrow
   lastDate?: Date;
 }
+
+export type MoneyTypeTYpe =
+  | "income"
+  | "expense"
+  | "gift"
+  | "loan"
+  | "borrow"
+  | "sell";

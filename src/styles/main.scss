@@ -93,6 +93,26 @@
     );
   }
 
+  .btn-blue {
+    background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 255, 0.5),
+      rgba(0, 0, 255, 0.8)
+    );
+  }
+
+  .light-transparent {
+    background-color: rgba(255, 255, 255, 0.189);
+  }
+
+  .dark-transparent {
+    background-color: rgba(0, 0, 0, 0.671);
+  }
+
+  .txt-shadow {
+    text-shadow: 0.5px 0 0.5px rgba(0, 0, 0, 0.637);
+  }
+
   .input-styles {
     @apply w-full rounded-lg border-2 border-themeColorLight bg-bgColorLight px-4 py-3  text-xl outline-none transition-colors duration-300 ease-in-out focus:border-mainColor max-[1000px]:px-2 max-[1000px]:py-2 max-[1000px]:text-lg max-[600px]:text-base;
   }

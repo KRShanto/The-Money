@@ -1,11 +1,15 @@
-import { getAuthSession } from "@/lib/auth";
+import { Money } from "@/models/money";
+import { dbConnect } from "@/lib/dbConnect";
+import DisplayMoney from "./home/DisplayMoney";
 
 export default async function Page() {
-  const sesison = await getAuthSession();
+  await dbConnect();
+
+  const money = await Money.find({});
 
   return (
     <>
-      <h1 className="text-4xl font-bold">Hello {sesison?.user?.name}</h1>
+      <DisplayMoney money={money} />
     </>
   );
 }
