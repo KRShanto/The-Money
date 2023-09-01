@@ -22,6 +22,7 @@ export default function ToggleTheme() {
       title={
         theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
       }
+      className="text-3xl"
     >
       {theme === "dark" ? <BsFillSunFill /> : <BsFillMoonStarsFill />}
     </NavButton>

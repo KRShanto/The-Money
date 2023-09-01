@@ -10,6 +10,7 @@ import { AiFillBell } from "react-icons/ai";
 import NavButton from "./NavButton";
 import Image from "next/image";
 import UserImage from "@/../public/user-image.png";
+import { FaUserFriends } from "react-icons/fa";
 
 export default async function Navbar() {
   const session = (await getAuthSession()) as { user: UserType } | null;
@@ -43,8 +44,12 @@ export default async function Navbar() {
           className="relative z-10 flex items-center gap-8 font-bold transition-all duration-300 ease-in-out max-[1250px]:-right-80 max-[1250px]:flex-col max-[1250px]:items-start max-[1250px]:gap-0 max-[1250px]:rounded-md max-[1250px]:bg-bgColorLight"
         >
           <NavButton>
-            <AiFillBell className="text-3xl" />
+            <AiFillBell className="text-3xl" title="Notifications" />
           </NavButton>
+
+          <NavLink href="/friends">
+            <FaUserFriends className="text-3xl" title="Friends" />
+          </NavLink>
 
           {session ? (
             <>
