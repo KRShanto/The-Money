@@ -35,7 +35,15 @@ export default function Input({
         type={type}
         name={name}
         id={name}
-        defaultValue={value}
+        defaultValue={
+          value
+            ? value
+            : type === "number"
+            ? 0
+            : type === "date"
+            ? new Date().toISOString().slice(0, 10)
+            : ""
+        }
         placeholder={placeholder}
         required={required}
         disabled={disabled}
