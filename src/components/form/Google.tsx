@@ -9,7 +9,7 @@ export default function Google() {
     <button
       type="button"
       className="btn input-provider"
-      onClick={() => signIn("google")}
+      onClick={() => signIn("google", { callbackUrl: "/" })}
     >
       <Image src={GoogleIcon} alt="Google icon" width={30} height={30} />
       <span>Sign in with Google</span>
