@@ -2,7 +2,7 @@ export interface MoneyType {
   _id: string;
   userId: string;
   oppositeUser: {
-    type: "friend" | "custom";
+    type: "user" | "custom";
     // if custom
     name?: string;
     // if friend
@@ -11,6 +11,8 @@ export interface MoneyType {
   type: MoneyTypeTYpe;
   amount: number;
   description: string;
+  // date when the user did something with money
+  date: Date;
   createdAt: Date;
   updatedAt?: Date;
   // which friend created this money

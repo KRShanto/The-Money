@@ -12,7 +12,7 @@ export default function Filter({
   setMoneyList: React.Dispatch<React.SetStateAction<MoneyType[]>>;
 }) {
   return (
-    <button className="btn dark-transparent dark:light-transparent txt-shadow text-2xl shadow-md">
+    <button className="btn txt-shadow bg-slate-700 text-2xl shadow-md dark:bg-slate-700">
       <BiFilter />
       Filter
     </button>

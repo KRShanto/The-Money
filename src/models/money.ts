@@ -10,7 +10,7 @@ const moneySchema = new Schema<MoneyType>({
   oppositeUser: {
     type: {
       type: String,
-      enum: ["friend", "custom"],
+      enum: ["user", "custom"],
       required: true,
     },
     id: String,
@@ -25,8 +25,9 @@ const moneySchema = new Schema<MoneyType>({
     type: Number,
     required: true,
   },
-  description: {
-    type: String,
+  description: String,
+  date: {
+    type: Date,
     required: true,
   },
   createdAt: {

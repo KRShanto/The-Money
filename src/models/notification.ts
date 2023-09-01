@@ -7,14 +7,22 @@ const notificationSchema = new Schema<NotificationType>({
     type: String,
     required: true,
   },
-  message: {
+  title: {
     type: String,
     required: true,
   },
-  link: {
+  body: String,
+  type: {
     type: String,
-    required: true,
+    enum: ["normal", "danger", "warning"],
+    default: "normal",
   },
+  links: [
+    {
+      href: String,
+      title: String,
+    },
+  ],
   read: {
     type: Boolean,
     default: false,
