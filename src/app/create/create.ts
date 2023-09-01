@@ -90,7 +90,7 @@ export async function create({ data, type }: { data: FormData; type: string }) {
   return {
     success: true,
     data: {
-      _id: money._id,
+      id: money._id,
     },
   };
 }

@@ -26,6 +26,17 @@ const userSchema = new Schema<UserDocument>({
   resetTokenExpires: Number,
 });
 
+// Only return useful data. Remove unnecessary data
+userSchema.methods.purify = function (this: UserDocument) {
+  return {
+    id: this._id.toString(),
+    name: this.name,
+    email: this.email,
+    role: this.role,
+    image: this.image,
+  };
+};
+
 let User: mongoose.Model<UserDocument>;
 
 try {

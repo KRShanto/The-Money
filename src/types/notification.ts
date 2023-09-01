@@ -1,5 +1,5 @@
 export interface NotificationType {
-  _id: string;
+  id: string;
   to: string;
   title: string;
   body: string;
@@ -7,4 +7,9 @@ export interface NotificationType {
   links: { href: string; title: string }[];
   read: boolean;
   createdAt: Date;
+}
+
+export interface NotificationDocument extends NotificationType {
+  _id: string;
+  purify(): NotificationType;
 }

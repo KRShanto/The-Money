@@ -5,7 +5,7 @@ import { FaTimes } from "react-icons/fa";
 import { cn } from "@/lib/cn";
 
 export interface UserItemType {
-  _id: string;
+  id: string;
   image: string;
   name: string;
   isFriend: boolean;
@@ -22,7 +22,7 @@ export default function UserItem({
 }) {
   return (
     <div
-      key={user._id}
+      key={user.id}
       className={cn(
         "flex items-center justify-between  rounded-md bg-slate-100 px-5 py-2 shadow-lg dark:bg-slate-800",
         className,

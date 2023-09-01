@@ -5,15 +5,16 @@ import { useFormErrorStore } from "@/stores/formError";
 import { create } from "./create";
 import { usePopupStore } from "@/stores/popup";
 import { sendNotification } from "@/actions/sendNotification";
-import { UserType } from "@/types/user";
 import { useRouter } from "next/navigation";
 
 export default function SubmitBtn({
   type,
-  user,
+  userId,
+  userName,
 }: {
   type: string;
-  user: UserType;
+  userId: string;
+  userName: string;
 }) {
   const { showError } = useFormErrorStore();
   const { openPopup } = usePopupStore();
@@ -44,14 +45,14 @@ export default function SubmitBtn({
           type: "normal",
 
           title: "A record has been created with you",
-          body: `${user.name} has created a record with you.`,
+          body: `${userName} has created a record with you.`,
           links: [
             {
-              href: `/user/${user.id}`,
+              href: `/user/${userId}`,
               title: "View user",
             },
             {
-              href: `/?record=${res.data?._id}`,
+              href: `/?record=${res.data?.id}`,
               title: "View record",
             },
           ],

@@ -7,7 +7,9 @@ export interface UserType {
 }
 
 export interface UserDocument extends UserType, Document {
+  _id: string;
   password?: string;
   resetToken?: string;
   resetTokenExpires?: number;
+  purify(): UserType;
 }

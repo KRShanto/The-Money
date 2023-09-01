@@ -133,12 +133,12 @@ export default function UserInput({ type }: { type: string }) {
         <ul className="mt-3 flex flex-col space-y-3">
           {users.map((user) => (
             <li
-              key={user._id}
+              key={user.id}
               onClick={() => {
                 setSelectedUser(user);
                 setUsers([]);
                 setFinalInputValue(
-                  `user:${user._id}:${user.isFriend ? "friend" : "not-friend"}`,
+                  `user:${user.id}:${user.isFriend ? "friend" : "not-friend"}`,
                 );
               }}
             >

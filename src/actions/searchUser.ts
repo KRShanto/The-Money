@@ -31,7 +31,7 @@ export async function searchUsers(nameToSearch: string) {
     });
 
     return {
-      _id: user._id.toString(),
+      id: user._id.toString(),
       name: user.name,
       image: user.image,
       isFriend: !!friend,

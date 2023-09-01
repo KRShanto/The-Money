@@ -72,7 +72,11 @@ export default async function Page({
             <Input label="Last date to pay back" name="lastDate" type="date" />
           ))}
 
-        <SubmitBtn type={type} user={session.user} />
+        <SubmitBtn
+          type={type}
+          userId={session.user.id}
+          userName={session.user.name}
+        />
         <Cancel prev="/create">Back</Cancel>
       </Form>
     );

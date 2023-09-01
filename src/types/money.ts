@@ -1,5 +1,5 @@
 export interface MoneyType {
-  _id: string;
+  id: string;
   userId: string;
   oppositeUser: {
     type: "user" | "custom";
@@ -30,3 +30,8 @@ export type MoneyTypeTYpe =
   | "loan"
   | "borrow"
   | "sell";
+
+export interface MoneyDocument extends MoneyType, Document {
+  _id: string;
+  purify(): MoneyType;
+}

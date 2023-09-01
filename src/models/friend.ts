@@ -1,8 +1,8 @@
 import "server-only";
-import { FriendType } from "@/types/friend";
+import { FriendDocument, FriendType } from "@/types/friend";
 import mongoose, { Schema } from "mongoose";
 
-const friendSchema = new Schema<FriendType>({
+const friendSchema = new Schema<FriendDocument>({
   one: {
     type: String,
     required: true,
@@ -17,12 +17,22 @@ const friendSchema = new Schema<FriendType>({
   },
 });
 
-let Friend: mongoose.Model<FriendType>;
+// Only return useful data. Remove unnecessary data
+friendSchema.methods.purify = function (this: FriendDocument) {
+  return {
+    id: this._id.toString(),
+    one: this.one,
+    two: this.two,
+    createdAt: this.createdAt,
+  };
+};
+
+let Friend: mongoose.Model<FriendDocument>;
 
 try {
-  Friend = mongoose.model<FriendType>("Friend");
+  Friend = mongoose.model<FriendDocument>("Friend");
 } catch {
-  Friend = mongoose.model<FriendType>("Friend", friendSchema);
+  Friend = mongoose.model<FriendDocument>("Friend", friendSchema);
 }
 
 export { Friend };

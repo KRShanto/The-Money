@@ -1,8 +1,8 @@
 import "server-only";
-import { MoneyType } from "@/types/money";
+import { MoneyDocument, MoneyType } from "@/types/money";
 import mongoose, { Schema } from "mongoose";
 
-const moneySchema = new Schema<MoneyType>({
+const moneySchema = new Schema<MoneyDocument>({
   userId: {
     type: String,
     required: true,
@@ -43,12 +43,34 @@ const moneySchema = new Schema<MoneyType>({
   lastDate: Date,
 });
 
-let Money: mongoose.Model<MoneyType>;
+// Only return useful data. Remove unnecessary data
+moneySchema.methods.purify = function (this: MoneyDocument) {
+  return {
+    id: this?._id.toString(),
+    userId: this.userId,
+    oppositeUser: {
+      type: this.oppositeUser.type,
+      id: this.oppositeUser.id,
+      name: this.oppositeUser.name,
+    },
+    type: this.type,
+    amount: this.amount,
+    description: this.description,
+    date: this.date,
+    createdAt: this.createdAt,
+    updatedAt: this.updatedAt,
+    createdBy: this.createdBy,
+    updatedBy: this.updatedBy,
+    lastDate: this.lastDate,
+  };
+};
+
+let Money: mongoose.Model<MoneyDocument>;
 
 try {
-  Money = mongoose.model<MoneyType>("Money");
+  Money = mongoose.model<MoneyDocument>("Money");
 } catch {
-  Money = mongoose.model<MoneyType>("Money", moneySchema);
+  Money = mongoose.model<MoneyDocument>("Money", moneySchema);
 }
 
 export { Money };

@@ -1,8 +1,8 @@
 import "server-only";
-import { NotificationType } from "@/types/notification";
+import { NotificationDocument, NotificationType } from "@/types/notification";
 import mongoose, { Schema } from "mongoose";
 
-const notificationSchema = new Schema<NotificationType>({
+const notificationSchema = new Schema<NotificationDocument>({
   to: {
     type: String,
     required: true,
@@ -33,12 +33,26 @@ const notificationSchema = new Schema<NotificationType>({
   },
 });
 
-let Notification: mongoose.Model<NotificationType>;
+// Only return useful data. Remove unnecessary data
+notificationSchema.methods.purify = function (this: NotificationDocument) {
+  return {
+    id: this._id.toString(),
+    to: this.to,
+    title: this.title,
+    body: this.body,
+    type: this.type,
+    links: this.links,
+    read: this.read,
+    createdAt: this.createdAt,
+  };
+};
+
+let Notification: mongoose.Model<NotificationDocument>;
 
 try {
-  Notification = mongoose.model<NotificationType>("Notification");
+  Notification = mongoose.model<NotificationDocument>("Notification");
 } catch {
-  Notification = mongoose.model<NotificationType>(
+  Notification = mongoose.model<NotificationDocument>(
     "Notification",
     notificationSchema,
   );
