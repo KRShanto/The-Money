@@ -1,16 +1,22 @@
 import React from "react";
-import { UserType } from "../../components/UserInput";
 import UserImage from "@/../public/user-image.png";
 import Image from "next/image";
 import { FaTimes } from "react-icons/fa";
 import { cn } from "@/lib/cn";
+
+export interface UserItemType {
+  _id: string;
+  image: string;
+  name: string;
+  isFriend: boolean;
+}
 
 export default function UserItem({
   user,
   className,
   children,
 }: {
-  user: UserType;
+  user: UserItemType;
   className?: string;
   children?: React.ReactNode;
 }) {
