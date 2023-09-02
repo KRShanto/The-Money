@@ -41,7 +41,10 @@ notificationSchema.methods.purify = function (this: NotificationDocument) {
     title: this.title,
     body: this.body,
     type: this.type,
-    links: this.links,
+    links: this.links.map((link) => ({
+      href: link.href,
+      title: link.title,
+    })),
     read: this.read,
     createdAt: this.createdAt,
   };

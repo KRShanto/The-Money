@@ -67,10 +67,9 @@ export default async function Page({
 
         <Input label="When did this happen?" name="date" type="date" />
 
-        {type === "loan" ||
-          (type === "borrow" && (
-            <Input label="Last date to pay back" name="lastDate" type="date" />
-          ))}
+        {(type === "loan" || type === "borrow") && (
+          <Input label="Last date to pay back" name="lastDate" type="date" />
+        )}
 
         <SubmitBtn
           type={type}

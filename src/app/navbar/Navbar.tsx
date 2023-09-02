@@ -11,12 +11,13 @@ import NavButton from "./NavButton";
 import Image from "next/image";
 import UserImage from "@/../public/user-image.png";
 import { FaUserFriends } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
 
 export default async function Navbar() {
   const session = (await getAuthSession()) as { user: UserType } | null;
 
   return (
-    <nav className="flex items-center justify-between bg-bgColorLight px-20 py-4 shadow-lg max-[1450px]:px-8 max-[1250px]:px-4 ">
+    <nav className="flex items-center justify-between bg-bgColorLight px-20 py-4 shadow-lg dark:shadow-sm dark:shadow-slate-600 max-[1450px]:px-8 max-[1250px]:px-4 ">
       {/* Title */}
       <Link
         href="/"
@@ -43,16 +44,20 @@ export default async function Navbar() {
           id="nav-links"
           className="relative z-10 flex items-center gap-8 font-bold transition-all duration-300 ease-in-out max-[1250px]:-right-80 max-[1250px]:flex-col max-[1250px]:items-start max-[1250px]:gap-0 max-[1250px]:rounded-md max-[1250px]:bg-bgColorLight"
         >
-          <NavButton>
-            <AiFillBell className="text-3xl" title="Notifications" />
-          </NavButton>
-
-          <NavLink href="/friends">
-            <FaUserFriends className="text-3xl" title="Friends" />
+          <NavLink href="/">
+            <FaHome className="text-3xl" title="Home" />
           </NavLink>
 
           {session ? (
             <>
+              <NavLink href="/notifications">
+                <AiFillBell className="text-3xl" title="Notifications" />
+              </NavLink>
+
+              <NavLink href="/friends">
+                <FaUserFriends className="text-3xl" title="Friends" />
+              </NavLink>
+
               <NavLink href="/profile">
                 <Image
                   src={session.user?.image ? session.user?.image : UserImage}
