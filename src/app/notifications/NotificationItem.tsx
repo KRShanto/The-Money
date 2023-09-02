@@ -12,6 +12,7 @@ import { IoAlertCircleOutline } from "react-icons/io5";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { markNotificationRead } from "./markNotificationRead";
+import { deleteNotification } from "./deleteNotification";
 
 export default function NotificationItem({
   notification,
@@ -70,7 +71,10 @@ export default function NotificationItem({
         </div>
 
         {/* Delete button */}
-        <button className="rounded-full p-3 transition-all duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-slate-600">
+        <button
+          className="rounded-full p-3 transition-all duration-300 ease-in-out hover:bg-gray-200 dark:hover:bg-slate-600"
+          onClick={() => deleteNotification(notification.id)}
+        >
           <FaTimes className="text-2xl text-slate-500 dark:text-slate-400" />
         </button>
       </div>
