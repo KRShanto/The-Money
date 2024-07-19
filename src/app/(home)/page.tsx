@@ -1,8 +1,8 @@
 import { Money } from "@/models/money";
 import { dbConnect } from "@/lib/dbConnect";
-import DisplayMoney from "./home/DisplayMoney";
+import DisplayMoney from "./DisplayMoney";
 import { getAuthSession } from "@/lib/auth";
-import LandingPage from "./home/LandingPage";
+import LandingPage from "./LandingPage";
 
 export default async function Page() {
   const session = (await getAuthSession()) as {
