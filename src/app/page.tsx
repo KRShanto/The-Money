@@ -23,5 +23,9 @@ export default async function Page() {
 
   const moneyPurified = money.map((money) => money.purify());
 
-  return <>{<DisplayMoney money={moneyPurified} />}</>;
+  return (
+    <>
+      <DisplayMoney money={moneyPurified} />
+    </>
+  );
 }

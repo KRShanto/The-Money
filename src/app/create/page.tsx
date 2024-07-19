@@ -65,6 +65,7 @@ export default async function Page({
 
         <Input label={`More details about your ${type}`} name="description" />
 
+        {/* TODO: optional date */}
         <Input label="When did this happen?" name="date" type="date" />
 
         {(type === "loan" || type === "borrow") && (

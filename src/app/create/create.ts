@@ -3,6 +3,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { TYPES } from "@/lib/constants";
 import { Money } from "@/models/money";
+import { User } from "@/models/user";
 
 export async function create({ data, type }: { data: FormData; type: string }) {
   // Get the user id from the session
@@ -28,8 +29,8 @@ export async function create({ data, type }: { data: FormData; type: string }) {
   }
 
   // Parse the opposite user from string to object
-  // Syntax: type:id or name
-  // type: user or custom
+  // Syntax: "type:(id or name)"
+  // type: "user" or "custom"
   const oppositeUserArray = (oppositeUser as string).split(":");
   const userType = oppositeUserArray[0];
   const id = userType === "user" ? oppositeUserArray[1] : null;
@@ -70,6 +71,8 @@ export async function create({ data, type }: { data: FormData; type: string }) {
     };
   }
 
+  const userName = id ? (await User.findById(id))?.name : name;
+
   // Create the money
   const money = new Money({
     userId,
@@ -77,7 +80,7 @@ export async function create({ data, type }: { data: FormData; type: string }) {
     oppositeUser: {
       type: userType,
       id,
-      name,
+      name: userName,
     },
     amount: Number(amount),
     description,

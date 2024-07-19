@@ -92,6 +92,7 @@ export default function UserInput({ type }: { type: string }) {
               setSelectedUser(null);
               setFinalInputValue(`custom:${input}`);
             }}
+            type="button"
           >
             <FaTimes className="text-xl text-red-500" />
           </button>
