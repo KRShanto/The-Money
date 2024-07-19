@@ -43,7 +43,6 @@ export default function SubmitBtn({
       } else {
         sendNotification({
           type: "normal",
-
           title: "A record has been created with you",
           body: `${userName} has created a record with you.`,
           links: [

@@ -26,7 +26,6 @@ friendSchema.methods.purify = function (this: FriendDocument) {
     createdAt: this.createdAt,
   };
 };
-
 let Friend: mongoose.Model<FriendDocument>;
 
 try {

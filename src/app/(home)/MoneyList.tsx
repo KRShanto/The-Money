@@ -32,7 +32,19 @@ function getColor(type: MoneyTypeTYpe) {
 export default function MoneyList({ moneyList }: { moneyList: MoneyType[] }) {
   return (
     <div className="my-5 flex flex-col items-center gap-3">
-      {/* name, type, amount, description, date */}
+      {/* Heading */}
+      <div className="flex w-[80%] items-center justify-between border-b  border-slate-500 p-1 px-3 text-lg">
+        <div className="h-4 w-4 rounded-full bg-transparent"></div>
+        <h3 className="w-[20%] font-bold">User Name</h3>
+        <p className="w-[20%] font-bold">Description</p>
+        <p className="w-[20%] font-bold">Amount</p>
+        <p className="w-[20%] font-bold">Date</p>
+        <button className="rounded-full border border-transparent p-1" disabled>
+          <FaInfo className="text-transparent" />
+        </button>
+      </div>
+
+      {/* Money List */}
       {moneyList.map((money, index) => (
         <div
           key={index}
