@@ -44,7 +44,7 @@ export default function ShowTypes() {
         </div>
       )}
 
-      <button className="btn btn-blue text-xl" onClick={() => setShow(!show)}>
+      <button className="btn btn-blue text-lg" onClick={() => setShow(!show)}>
         {show ? <FaArrowRight /> : <FaArrowLeft />}
         Show Types
       </button>

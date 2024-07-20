@@ -4,6 +4,7 @@ import DisplayMoney from "./DisplayMoney";
 import { getAuthSession } from "@/lib/auth";
 import LandingPage from "./LandingPage";
 import { User } from "@/models/user";
+import { getCorrectType } from "@/actions/getMoneyInfo";
 
 export default async function Page() {
   const session = (await getAuthSession()) as {
@@ -50,6 +51,10 @@ export default async function Page() {
             ...money.oppositeUser,
             name: user?.name,
           },
+          type: await getCorrectType({
+            type: money.type,
+            oppositeUserIsSame: true,
+          }),
         };
       } else {
         return money;

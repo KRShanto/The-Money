@@ -1,4 +1,4 @@
-import { getMoneyInfo } from "@/actions/getMoneyInfo";
+import { getMoneyInfo } from "../../actions/getMoneyInfo";
 import Popup from "@/components/Popup";
 import UserItem from "@/components/UserItem";
 import { getColor } from "@/lib/constants";

@@ -66,7 +66,7 @@ function getSummury({
   return summury;
 }
 
-function getCorrectType({
+export async function getCorrectType({
   type,
   oppositeUserIsSame,
 }: {
@@ -145,7 +145,7 @@ export async function getMoneyInfo(id: string) {
   console.log("ID: ", session?.user.id);
 
   return {
-    type: getCorrectType({
+    type: await getCorrectType({
       type: money?.type!,
       oppositeUserIsSame:
         money?.oppositeUser.id === session?.user.id.toString(),
