@@ -5,9 +5,13 @@ import { MoneyType, MoneyTypeTYpe } from "@/types/money";
 import React from "react";
 import { FaInfo } from "react-icons/fa";
 import moment from "moment";
+import { useSearchParams } from "next/navigation";
 
 export default function MoneyList({ moneyList }: { moneyList: MoneyType[] }) {
   const { openPopup } = usePopupStore();
+  const searchParams = useSearchParams();
+
+  const highlightedRecord = searchParams.get("record");
 
   function openMoneyDetails(money: MoneyType) {
     openPopup("SHOW_MONEY_DETAILS", { id: money.id });
@@ -31,7 +35,12 @@ export default function MoneyList({ moneyList }: { moneyList: MoneyType[] }) {
       {moneyList.map((money, index) => (
         <div
           key={index}
-          className="flex w-[80%] items-center justify-between rounded-md border border-slate-700 p-3"
+          className={cn(
+            "flex w-[80%] items-center justify-between rounded-md border border-slate-700 p-3",
+            highlightedRecord &&
+              highlightedRecord === money.id &&
+              "border-cyan-300",
+          )}
         >
           <div
             className="h-4 w-4 rounded-full"
