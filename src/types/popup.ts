@@ -1,1 +1,1 @@
-export type PopupType = "ASK_FOR_FRIEND_REQUEST" | null;
+export type PopupType = "ASK_FOR_FRIEND_REQUEST" | "SHOW_MONEY_DETAILS" | null;

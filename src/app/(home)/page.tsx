@@ -22,15 +22,16 @@ export default async function Page() {
     // oppositeUser: {
     //   id: session.user.id,
     // },
-    $or: [
-      { userId: session.user.id },
-      {
-        // BUG: its not working
-        oppositeUser: {
-          id: session.user.id,
-        },
-      },
-    ],
+    //
+    // $or: [
+    //   { userId: session.user.id },
+    //   {
+    //     // BUG: its not working
+    //     oppositeUser: {
+    //       id: session.user.id,
+    //     },
+    //   },
+    // ],
   });
 
   const moneyPurified = money.map((money) => money.purify());
