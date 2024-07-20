@@ -5,6 +5,7 @@ import ChatHeader from "./ChatHeader";
 import ChatBody from "./ChatBody";
 import { Message } from "@/models/message";
 import { getAuthSession } from "@/lib/auth";
+import Link from "next/link";
 
 export default async function Chat({ user }: { user?: UserType }) {
   // Get the session
@@ -12,21 +13,19 @@ export default async function Chat({ user }: { user?: UserType }) {
 
   if (!user)
     return (
-      <div className="h-[75vh] w-[50%] rounded-lg border border-slate-600 p-3">
+      <Wrappar>
         <div className="flex h-full w-full items-center justify-center">
           <p className="text-2xl">Select a friend to open chat.</p>
         </div>
-      </div>
+      </Wrappar>
     );
 
   const messages = await Message.find({
     $or: [{ to: session?.user.id }, { from: session?.user.id }],
   });
 
-  console.log("Session id: ", session?.user.id);
-
   return (
-    <div className="h-[75vh] w-[50%] rounded-lg border border-slate-600 p-5">
+    <Wrappar>
       <ChatHeader user={user} />
       <ChatBody
         userId={session?.user.id!}
@@ -34,6 +33,20 @@ export default async function Chat({ user }: { user?: UserType }) {
         messages={messages}
       />
       <ChatInput id={user.id} />
+    </Wrappar>
+  );
+}
+
+function Wrappar({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex w-[50%] flex-col items-end">
+      <Link href="/friends/add" className="btn btn-green mb-2 w-fit">
+        Add Friend
+      </Link>
+
+      <div className="h-[75vh] w-full rounded-lg border border-slate-600 p-1 px-5">
+        {children}
+      </div>
     </div>
   );
 }

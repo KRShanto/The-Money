@@ -22,9 +22,9 @@ export default function FriendList({ users }: { users: UserType[] }) {
         {users.map((user, index) => (
           <div
             key={index}
-            className="flex w-full items-center justify-between rounded-md border border-slate-700 p-3"
+            className="mb-2 flex w-full items-center justify-between rounded-md border border-slate-700 p-3"
           >
-            <div className=" w-[40%]">
+            <div className="w-[40%]">
               <Link
                 href={`/user/${user.id}`}
                 className="flex w-fit items-center gap-3 rounded-md p-2 px-3 transition-colors hover:bg-slate-700"

@@ -11,7 +11,7 @@ interface Props {
   body: string;
   links: { href: string; title: string }[];
 }
-
+// TODO: send email after sending notification.
 export async function sendNotification({
   to,
   type,

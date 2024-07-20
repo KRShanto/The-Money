@@ -35,17 +35,11 @@ export default function UserInput({ type }: { type: string }) {
       case "expense":
         return "Who did you pay?";
 
-      case "gift":
-        return "Who gave you a gift?";
-
       case "loan":
         return "Who did you loan money to?";
 
       case "borrow":
         return "Who did you borrow money from?";
-
-      case "sell":
-        return "Who did you sell something to?";
 
       default:
         return "Who?";
