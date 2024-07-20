@@ -4,15 +4,15 @@ import { getAuthSession } from "@/lib/auth";
 import { TYPES } from "@/lib/constants";
 import { Money } from "@/models/money";
 import { User } from "@/models/user";
+import { revalidatePath } from "next/cache";
 
 export async function create({ data, type }: { data: FormData; type: string }) {
   // Get the user id from the session
   const session = (await getAuthSession()) as { user: { id: string } } | null;
   const userId = session?.user?.id;
 
-  const { oppositeUser, amount, description, date } = Object.fromEntries(
-    data.entries(),
-  );
+  const { oppositeUser, amount, description, date, lastDate } =
+    Object.fromEntries(data.entries());
 
   // Check if required fields are provided
   if (!oppositeUser || !amount) {
@@ -85,10 +85,13 @@ export async function create({ data, type }: { data: FormData; type: string }) {
     amount: Number(amount),
     description,
     date: new Date(date as string),
+    lastDate: lastDate ? new Date(lastDate as string) : undefined,
     createdBy: userId,
   });
 
   await money.save();
+
+  revalidatePath("/");
 
   return {
     success: true,

@@ -39,20 +39,12 @@ export default async function Page({
       value: "expense",
     },
     {
-      label: "Someone gifted me money (Gift)",
-      value: "gift",
-    },
-    {
       label: "I gave someone money (Loan)",
       value: "loan",
     },
     {
       label: "I borrowed money (Borrow)",
       value: "borrow",
-    },
-    {
-      label: "I sold something (Sell)",
-      value: "sell",
     },
   ];
 

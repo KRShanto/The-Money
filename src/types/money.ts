@@ -23,13 +23,7 @@ export interface MoneyType {
   lastDate?: Date;
 }
 
-export type MoneyTypeTYpe =
-  | "income"
-  | "expense"
-  | "gift"
-  | "loan"
-  | "borrow"
-  | "sell";
+export type MoneyTypeTYpe = "income" | "expense" | "loan" | "borrow";
 
 export interface MoneyDocument extends MoneyType, Document {
   _id: string;
