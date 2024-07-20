@@ -10,7 +10,7 @@ export const TYPES = ["income", "expense", "loan", "borrow"] as const;
 export function getColor(type: MoneyTypeTYpe) {
   switch (type) {
     case "income":
-      return "green";
+      return "rgb(0, 255, 0)";
 
     case "borrow":
       return "yellow";
@@ -19,9 +19,6 @@ export function getColor(type: MoneyTypeTYpe) {
       return "red";
 
     case "loan":
-      return "blue";
-
-    default:
-      return "yellow";
+      return "orange";
   }
 }

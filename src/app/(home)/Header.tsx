@@ -1,6 +1,7 @@
 import { MoneyType } from "@/types/money";
 import Link from "next/link";
 import Filter from "./Filter";
+import ShowTypes from "./ShowTypes";
 
 export default function Header({
   money,
@@ -14,6 +15,7 @@ export default function Header({
 }) {
   return (
     <div className="flex items-center justify-end gap-5 px-14 py-5">
+      <ShowTypes />
       <Filter money={money} moneyList={moneyList} setMoneyList={setMoneyList} />
 
       <Link
