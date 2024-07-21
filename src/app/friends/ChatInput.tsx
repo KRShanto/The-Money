@@ -29,6 +29,7 @@ export default function ChatInput({ id }: { id: string }) {
         className="w-[40rem] rounded-md border-none bg-[#ffffff1d] p-3 px-5 text-xl outline-none"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        placeholder="Type your message"
       />
       <button>
         {/* TODO: loader */}

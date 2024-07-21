@@ -21,7 +21,6 @@ export default async function Chat({ user }: { user?: UserType }) {
     );
 
   const messages = await Message.find({
-    // $or: [{ to: session?.user.id }, { from: session?.user.id }],
     $or: [
       { to: session?.user.id, from: user.id },
       { to: user.id, from: session?.user.id },

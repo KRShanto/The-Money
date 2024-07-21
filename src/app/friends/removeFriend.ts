@@ -4,6 +4,7 @@ import { sendNotification } from "@/actions/sendNotification";
 import { getAuthSession } from "@/lib/auth";
 import { dbConnect } from "@/lib/dbConnect";
 import { Friend } from "@/models/friend";
+import { Message } from "@/models/message";
 
 export async function removeFriend(id: string) {
   await dbConnect();
@@ -15,6 +16,14 @@ export async function removeFriend(id: string) {
     $or: [
       { one: id, two: session.user.id },
       { one: session.user.id, two: id },
+    ],
+  });
+
+  // Remove all the chats
+  await Message.deleteMany({
+    $or: [
+      { from: id, to: session.user.id },
+      { from: session.user.id, to: id },
     ],
   });
 
