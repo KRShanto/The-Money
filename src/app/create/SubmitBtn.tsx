@@ -43,7 +43,7 @@ export default function SubmitBtn({
         const isFriend = splittedUser[2] === "friend" ? true : false;
 
         if (!isFriend) {
-          openPopup("ASK_FOR_FRIEND_REQUEST");
+          openPopup("ASK_FOR_FRIEND_REQUEST", { id: splittedUser[1] });
         } else {
           sendNotification({
             type: "normal",

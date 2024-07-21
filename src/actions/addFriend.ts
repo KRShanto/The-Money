@@ -2,7 +2,7 @@
 
 import { getAuthSession } from "@/lib/auth";
 import { Friend } from "@/models/friend";
-import { sendNotification } from "../../../actions/sendNotification";
+import { sendNotification } from "./sendNotification";
 import { User } from "@/models/user";
 import { revalidatePath } from "next/cache";
 

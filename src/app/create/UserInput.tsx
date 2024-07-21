@@ -11,10 +11,11 @@ import { FaTimes } from "react-icons/fa";
 import { BeatLoader } from "react-spinners";
 import { MAIN_COLOR } from "@/lib/constants";
 import { UserItemType } from "../../components/UserItem";
+import { MoneyTypeTYpe } from "@/types/money";
 
 const USER_SEARCH_TIMEOUT = 1000; // 1 second
 
-export default function UserInput({ type }: { type: string }) {
+export default function UserInput({ type }: { type: MoneyTypeTYpe }) {
   const [input, setInput] = useState("");
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
   const [users, setUsers] = useState<UserItemType[]>([]);
@@ -29,7 +30,7 @@ export default function UserInput({ type }: { type: string }) {
 
   function generateLabel() {
     switch (type) {
-      case "income":
+      case "profit":
         return "Who paid you?";
 
       case "expense":

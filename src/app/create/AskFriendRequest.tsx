@@ -1,9 +1,11 @@
+import { addFriend } from "@/actions/addFriend";
 import Popup from "@/components/Popup";
 import { usePopupStore } from "@/stores/popup";
 import React from "react";
 
 export default function AskFriendRequest() {
-  const { closePopup } = usePopupStore();
+  const { data, closePopup } = usePopupStore();
+  const { id } = data;
 
   return (
     <Popup title="Send a friend request">
@@ -12,12 +14,18 @@ export default function AskFriendRequest() {
       </p>
 
       <div className="flex justify-end space-x-3">
-        <button className="btn btn-main" onClick={closePopup}>
-          Send
-        </button>
-
         <button className="btn bg-slate-700" onClick={closePopup}>
           No thanks
+        </button>
+
+        <button
+          className="btn btn-main"
+          onClick={async () => {
+            await addFriend(id);
+            closePopup();
+          }}
+        >
+          Send
         </button>
       </div>
     </Popup>

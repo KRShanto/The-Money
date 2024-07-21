@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import UserImage from "@/../public/user-image.png";
 import { FaPlus, FaSearch } from "react-icons/fa";
-import { addFriend } from "./addFriend";
+import { addFriend } from "@/actions/addFriend";
 
 export default function Page() {
   const [users, setUsers] = useState<
