@@ -24,7 +24,6 @@ export default function NotificationItem({
   // Mark notification as read when it comes into view
   useEffect(() => {
     if (inView) {
-      console.log("I am going to mark this notification as read");
       if (!notification.read) markNotificationRead(notification.id);
     }
   }, [inView]);

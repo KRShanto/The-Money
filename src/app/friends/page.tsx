@@ -22,9 +22,6 @@ export default async function Page({
     friends.map(async (friend) => {
       const id = friend.one == session?.user.id ? friend.two : friend.one;
 
-      console.log("Session id for friend: ", session?.user.id);
-      console.log("Friend id: ", id);
-
       const user = await User.findById(id);
 
       return {

@@ -25,6 +25,8 @@ export async function createResetToken(email: string) {
 
   await user.save();
 
+  // TODO: create reusable function for sending emails
+
   const transporter = createTransport({
     service: "gmail",
     auth: {

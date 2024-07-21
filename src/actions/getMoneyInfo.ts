@@ -149,8 +149,6 @@ export async function getMoneyInfo(id: string) {
     isFriend = !!friend;
   }
 
-  console.log("ID: ", session?.user.id);
-
   return {
     type: await getCorrectType({
       type: money?.type!,
