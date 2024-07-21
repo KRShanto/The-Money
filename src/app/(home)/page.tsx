@@ -37,7 +37,7 @@ export default async function Page() {
     //     },
     //   },
     // ],
-  });
+  }).sort({ createdAt: -1 });
 
   const moneyPurified = money.map((money) => money.purify());
 
