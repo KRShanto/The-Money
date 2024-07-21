@@ -61,6 +61,9 @@ function getSummury({
         summury = `You gave loan to ${oppositeUserName}`;
       }
       break;
+
+    case "deposit":
+      summury = "You started using this software this these deposit";
   }
 
   return summury;
@@ -90,6 +93,10 @@ export async function getCorrectType({
 
     case "loan":
       correctType = oppositeUserIsSame ? "borrow" : "loan";
+      break;
+
+    case "deposit":
+      correctType = "deposit";
       break;
   }
 

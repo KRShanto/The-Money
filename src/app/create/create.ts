@@ -1,18 +1,38 @@
 "use server";
 
 import { getAuthSession } from "@/lib/auth";
-import { TYPES } from "@/lib/constants";
+import { SITE_NAME, TYPES } from "@/lib/constants";
 import { Money } from "@/models/money";
 import { User } from "@/models/user";
+import { MoneyTypeTYpe } from "@/types/money";
 import { revalidatePath } from "next/cache";
 
-export async function create({ data, type }: { data: FormData; type: string }) {
+export async function create({
+  data,
+  type,
+}: {
+  data: FormData;
+  type: MoneyTypeTYpe;
+}) {
   // Get the user id from the session
   const session = (await getAuthSession()) as { user: { id: string } } | null;
   const userId = session?.user?.id;
 
-  const { oppositeUser, amount, description, date, lastDate } =
-    Object.fromEntries(data.entries());
+  // const { oppositeUser, amount, description, date, lastDate } =
+  //   Object.fromEntries(data.entries());
+
+  const amount = data.get("amount");
+  let oppositeUser = data.get("oppositeUser");
+  let description = data.get("description");
+  let date = data.get("date");
+  let lastDate = data.get("lastDate");
+
+  // If its a deposit, change the inputs
+  if (type === "deposit") {
+    oppositeUser = `custom:${SITE_NAME} Software`;
+    description = "I'm starting using this software by depositing this amount.";
+    date = new Date().toDateString();
+  }
 
   // Check if required fields are provided
   if (!oppositeUser || !amount) {

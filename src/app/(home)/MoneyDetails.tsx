@@ -47,6 +47,7 @@ export default function MoneyDetails() {
 
             <div className="mt-5">
               <h3 className="mb-3 text-lg font-semibold">User Name</h3>
+              {/* TODO: if its a deposit, then don't use UserItem, use custom */}
               {info.oppositeUser.type === "user" ? (
                 <Link href={`/user/${info.oppositeUser.id}`}>
                   <UserItem

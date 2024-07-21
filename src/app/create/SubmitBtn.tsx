@@ -6,13 +6,14 @@ import { create } from "./create";
 import { usePopupStore } from "@/stores/popup";
 import { sendNotification } from "@/actions/sendNotification";
 import { useRouter } from "next/navigation";
+import { MoneyTypeTYpe } from "@/types/money";
 
 export default function SubmitBtn({
   type,
   userId,
   userName,
 }: {
-  type: string;
+  type: MoneyTypeTYpe;
   userId: string;
   userName: string;
 }) {
@@ -26,38 +27,42 @@ export default function SubmitBtn({
       type,
     });
 
-    if (res.error) showError(res.error);
+    if (res.error) {
+      return showError(res.error);
+    }
 
-    // Send notification
-    // If the user is the friend of the opposite user, send notification
-    // Else, ask to send a friend request, not a notification
-    const oppoisiteUser = data.get("oppositeUser") as string;
-    // split the user value. syntax: type:id/name. if type == user, then -> user:id:friend/not-friend
-    const splittedUser = oppoisiteUser.split(":");
+    if (type !== "deposit") {
+      // Send notification
+      // If the user is the friend of the opposite user, send notification
+      // Else, ask to send a friend request, not a notification
+      const oppoisiteUser = data.get("oppositeUser") as string;
+      // split the user value. syntax: type:id/name. if type == user, then -> user:id:friend/not-friend
+      const splittedUser = oppoisiteUser.split(":");
 
-    if (splittedUser[0] === "user") {
-      const isFriend = splittedUser[2] === "friend" ? true : false;
+      if (splittedUser[0] === "user") {
+        const isFriend = splittedUser[2] === "friend" ? true : false;
 
-      if (!isFriend) {
-        openPopup("ASK_FOR_FRIEND_REQUEST");
-      } else {
-        sendNotification({
-          type: "normal",
-          title: "A record has been created with you",
-          body: `${userName} has created a record with you.`,
-          links: [
-            {
-              href: `/user/${userId}`,
-              title: "View user",
-            },
-            {
-              href: `/?record=${res.data?.id}`,
-              title: "View record",
-            },
-          ],
+        if (!isFriend) {
+          openPopup("ASK_FOR_FRIEND_REQUEST");
+        } else {
+          sendNotification({
+            type: "normal",
+            title: "A record has been created with you",
+            body: `${userName} has created a record with you.`,
+            links: [
+              {
+                href: `/user/${userId}`,
+                title: "View user",
+              },
+              {
+                href: `/?record=${res.data?.id}`,
+                title: "View record",
+              },
+            ],
 
-          to: splittedUser[1],
-        });
+            to: splittedUser[1],
+          });
+        }
       }
     }
 

@@ -24,14 +24,14 @@ export default async function Page({
     return <NotLoggedIn task="create a record" />;
   }
 
-  const type = searchParams.type;
+  const type = searchParams.type as MoneyTypeTYpe;
 
   const options: {
     label: string;
     value: MoneyTypeTYpe;
   }[] = [
     {
-      label: "I earned/made money (Profit)",
+      label: "I earned money (Profit)",
       value: "profit",
     },
     {
@@ -46,19 +46,27 @@ export default async function Page({
       label: "I borrowed money (Borrow)",
       value: "borrow",
     },
+    {
+      label: "I start with an initial (Deposit)",
+      value: "deposit",
+    },
   ];
 
-  if (type && TYPES.includes(type as MoneyTypeTYpe)) {
+  if (type && TYPES.includes(type)) {
     return (
       <Form title="Create a record" fullStyle>
-        <UserInput type={type} />
+        {type !== "deposit" && <UserInput type={type} />}
 
         <Input label="Amount" name="amount" type="number" />
 
-        <Input label={`More details about your ${type}`} name="description" />
+        {type !== "deposit" && (
+          <Input label={`More details about your ${type}`} name="description" />
+        )}
 
         {/* TODO: optional date */}
-        <Input label="When did this happen?" name="date" type="date" />
+        {type !== "deposit" && (
+          <Input label="When did this happen?" name="date" type="date" />
+        )}
 
         {(type === "loan" || type === "borrow") && (
           <Input label="Last date to pay back" name="lastDate" type="date" />
