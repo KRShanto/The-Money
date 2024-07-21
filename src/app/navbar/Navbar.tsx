@@ -12,6 +12,7 @@ import Image from "next/image";
 import UserImage from "@/../public/user-image.png";
 import { FaUserFriends } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
+import Notification from "./Notification";
 
 export default async function Navbar() {
   const session = (await getAuthSession()) as { user: UserType } | null;
@@ -50,9 +51,7 @@ export default async function Navbar() {
 
           {session ? (
             <>
-              <NavLink href="/notifications">
-                <AiFillBell className="text-3xl" title="Notifications" />
-              </NavLink>
+              <Notification />
 
               <NavLink href="/friends">
                 <FaUserFriends className="text-3xl" title="Friends" />
