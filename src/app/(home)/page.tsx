@@ -22,12 +22,7 @@ export default async function Page() {
   await dbConnect();
 
   const money = await Money.find({
-    // userId: session.user.id,
-    // oppositeUser: {
-    //   id: session.user.id,
-    // },
-    //
-    // TODO
+    // TODO: make it work
     // $or: [
     //   { userId: session.user.id },
     //   {
@@ -41,8 +36,15 @@ export default async function Page() {
 
   const moneyPurified = money.map((money) => money.purify());
 
+  const newMoneyPurified = moneyPurified.filter((money) => {
+    if (money.userId == id || money.oppositeUser.id == id) {
+      return true;
+    }
+    return false;
+  });
+
   const newMoney = await Promise.all(
-    moneyPurified.map(async (money) => {
+    newMoneyPurified.map(async (money) => {
       if (money.oppositeUser.id == id) {
         const user = await User.findById(money.createdBy);
         return {
