@@ -11,6 +11,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import clientPromise from "./clientPromise";
 import { User } from "@/models/user";
 import { dbConnect } from "@/lib/dbConnect";
+import { SITE_NAME } from "./constants";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET!,
@@ -24,7 +25,7 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     CredentialsProvider({
-      name: "The Money",
+      name: SITE_NAME,
       credentials: {
         email: {
           label: "Your Email",
