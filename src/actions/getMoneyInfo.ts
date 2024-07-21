@@ -22,7 +22,7 @@ function getSummury({
 
   // TODO: highlight the names using <>{name}<>
   switch (type) {
-    case "income":
+    case "profit":
       if (oppositeUserType !== "custom") {
         summury = oppositeUserIsSame
           ? `You bought/payed money to ${oppositeUserName}`
@@ -76,12 +76,12 @@ export async function getCorrectType({
   let correctType: MoneyTypeTYpe;
 
   switch (type) {
-    case "income":
-      correctType = oppositeUserIsSame ? "expense" : "income";
+    case "profit":
+      correctType = oppositeUserIsSame ? "expense" : "profit";
       break;
 
     case "expense":
-      correctType = oppositeUserIsSame ? "income" : "expense";
+      correctType = oppositeUserIsSame ? "profit" : "expense";
       break;
 
     case "borrow":

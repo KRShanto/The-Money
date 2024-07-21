@@ -1,6 +1,6 @@
 "use client";
 
-import { getColor } from "@/lib/constants";
+import { getColor, TYPES } from "@/lib/constants";
 import { MoneyTypeTYpe } from "@/types/money";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -22,25 +22,12 @@ export default function ShowTypes() {
     <div className="flex gap-5">
       {show && (
         <div className="flex gap-5 text-xl">
-          <div className="flex items-center gap-2">
-            <div {...getStyle("income")}></div>
-            <p>Income</p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div {...getStyle("expense")}></div>
-            <p>Expense</p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div {...getStyle("borrow")}></div>
-            <p>Borrow</p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div {...getStyle("loan")}></div>
-            <p>Loan</p>
-          </div>
+          {TYPES.map((type, index) => (
+            <div className="flex items-center gap-2" key={index}>
+              <div {...getStyle(type)}></div>
+              <p>{type.charAt(0).toUpperCase() + type.slice(1)}</p>
+            </div>
+          ))}
         </div>
       )}
 

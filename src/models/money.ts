@@ -18,7 +18,7 @@ const moneySchema = new Schema<MoneyDocument>({
   },
   type: {
     type: String,
-    enum: ["income", "expense", "loan", "borrow"],
+    enum: ["profit", "expense", "loan", "borrow"],
     required: true,
   },
   amount: {

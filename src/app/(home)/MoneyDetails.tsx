@@ -38,8 +38,6 @@ export default function MoneyDetails() {
     getDetails();
   }, [id]);
 
-  console.log("Info: ", info);
-
   return (
     <Popup title="Money Details" crossIcon>
       <div className="w-[40rem]">

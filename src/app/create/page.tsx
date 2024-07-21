@@ -31,8 +31,8 @@ export default async function Page({
     value: MoneyTypeTYpe;
   }[] = [
     {
-      label: "I earned money (Income)",
-      value: "income",
+      label: "I earned/made money (Profit)",
+      value: "profit",
     },
     {
       label: "I spent money (Expense)",
