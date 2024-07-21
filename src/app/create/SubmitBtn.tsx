@@ -63,6 +63,7 @@ export default function SubmitBtn({
 
     // At the end, return back to the home page
     router.push("/");
+    router.refresh();
   };
 
   return <Submit formAction={handleSubmit}>Create</Submit>;

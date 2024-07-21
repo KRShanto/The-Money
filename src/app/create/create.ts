@@ -91,8 +91,6 @@ export async function create({ data, type }: { data: FormData; type: string }) {
 
   await money.save();
 
-  revalidatePath("/");
-
   return {
     success: true,
     data: {
