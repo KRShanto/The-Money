@@ -6,8 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import UserImage from "@/../public/user-image.png";
 import { FaPlus, FaSearch } from "react-icons/fa";
-import { sendFriendRequest } from "@/actions/sendFriendRequest";
-import { BiArrowBack } from "react-icons/bi";
+import { addFriend } from "./addFriend";
 
 export default function Page() {
   const [users, setUsers] = useState<
@@ -22,7 +21,7 @@ export default function Page() {
   }
 
   async function send(userId: string) {
-    const res = await sendFriendRequest(userId);
+    const res = await addFriend(userId);
 
     if (res.success) {
       setUsers((prev) =>

@@ -2,13 +2,11 @@
 
 import { getAuthSession } from "@/lib/auth";
 import { Friend } from "@/models/friend";
-import { sendNotification } from "./sendNotification";
+import { sendNotification } from "../../../actions/sendNotification";
 import { User } from "@/models/user";
 import { revalidatePath } from "next/cache";
 
-// Send friend request
-// NOTE: It doesn't really send any request. Rather this add these two users as friend, sends a notification. And then if any user wants, they can delete their friendship.
-export async function sendFriendRequest(to: string) {
+export async function addFriend(to: string) {
   const session = (await getAuthSession()) as any;
   const userId = session.user.id;
 
