@@ -32,38 +32,42 @@ export default function MoneyList({ moneyList }: { moneyList: MoneyType[] }) {
       </div>
 
       {/* Money List */}
-      {moneyList.map((money, index) => (
-        <div
-          key={index}
-          className={cn(
-            "flex w-[80%] items-center justify-between rounded-md border border-slate-700 p-3",
-            highlightedRecord &&
-              highlightedRecord === money.id &&
-              "border-cyan-300",
-          )}
-        >
+      <div className="h-[70vh] w-[80%] overflow-y-scroll ">
+        {moneyList.map((money, index) => (
           <div
-            className="h-4 w-4 rounded-full"
-            style={{ backgroundColor: getColor(money.type) }}
-          ></div>
-
-          <h3 className="w-[20%]">{money.oppositeUser.name}</h3>
-
-          <p className="w-[20%]">{money.description}</p>
-
-          {/* Fetch the amount type (dollar/taka/euro) from settings */}
-          <p className="w-[20%]">$ {money.amount}</p>
-
-          <p className="w-[20%]">{moment(money.date).format("DD MMMM, yy")}</p>
-
-          <button
-            className="rounded-full border p-1"
-            onClick={() => openMoneyDetails(money)}
+            key={index}
+            className={cn(
+              "mt-2 flex w-full items-center justify-between rounded-md border border-slate-700 p-3",
+              highlightedRecord &&
+                highlightedRecord === money.id &&
+                "border-cyan-300",
+            )}
           >
-            <FaInfo />
-          </button>
-        </div>
-      ))}
+            <div
+              className="h-4 w-4 rounded-full"
+              style={{ backgroundColor: getColor(money.type) }}
+            ></div>
+
+            <h3 className="w-[20%]">{money.oppositeUser.name}</h3>
+
+            <p className="w-[20%]">{money.description}</p>
+
+            {/* Fetch the amount type (dollar/taka/euro) from settings */}
+            <p className="w-[20%]">$ {money.amount}</p>
+
+            <p className="w-[20%]">
+              {moment(money.date).format("DD MMMM, yy")}
+            </p>
+
+            <button
+              className="rounded-full border p-1"
+              onClick={() => openMoneyDetails(money)}
+            >
+              <FaInfo />
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
