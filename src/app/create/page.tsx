@@ -4,7 +4,7 @@ import { MoneyTypeTYpe } from "@/types/money";
 import Link from "next/link";
 import SubmitBtn from "./SubmitBtn";
 import Cancel from "@/components/form/Cancel";
-import UserInput from "./UserInput";
+import UserInput from "../../components/UserInput";
 import { getAuthSession } from "@/lib/auth";
 import NotLoggedIn from "@/components/NotLoggedIn";
 import { TYPES } from "@/lib/constants";

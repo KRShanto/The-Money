@@ -7,12 +7,14 @@ export default function Page() {
       {/* Header */}
       <div className="flex items-center justify-end gap-5 px-14 py-5">
         <Link
-          href="/saved/create"
+          href="/template/create"
           className="btn btn-green txt-shadow text-xl shadow-md"
         >
           + Create
         </Link>
       </div>
+
+      {/* type, username, description, amount, options: edit, delete, use (+) */}
     </div>
   );
 }

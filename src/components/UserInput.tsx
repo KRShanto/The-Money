@@ -6,16 +6,16 @@ import Wrappar from "@/components/form/Wrappar";
 import { useEffect, useState } from "react";
 import { searchUsers } from "@/actions/searchUser";
 import Image from "next/image";
-import UserItem from "../../components/UserItem";
+import UserItem from "./UserItem";
 import { FaTimes } from "react-icons/fa";
 import { BeatLoader } from "react-spinners";
 import { MAIN_COLOR } from "@/lib/constants";
-import { UserItemType } from "../../components/UserItem";
+import { UserItemType } from "./UserItem";
 import { MoneyTypeTYpe } from "@/types/money";
 
 const USER_SEARCH_TIMEOUT = 1000; // 1 second
 
-export default function UserInput({ type }: { type: MoneyTypeTYpe }) {
+export default function UserInput({ type }: { type: MoneyTypeTYpe | null }) {
   const [input, setInput] = useState("");
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
   const [users, setUsers] = useState<UserItemType[]>([]);
@@ -69,7 +69,9 @@ export default function UserInput({ type }: { type: MoneyTypeTYpe }) {
 
   return (
     <Wrappar>
-      <Label htmlFor="oppositeUserInput">{generateLabel()}</Label>
+      <Label htmlFor="oppositeUserInput">
+        {type ? generateLabel() : "User Name"}
+      </Label>
 
       {/* Input there the value will be stored */}
       <input

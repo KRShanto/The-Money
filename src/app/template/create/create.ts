@@ -1,47 +1,25 @@
 "use server";
 
 import { getAuthSession } from "@/lib/auth";
-import { SITE_NAME, TYPES } from "@/lib/constants";
-import { Money } from "@/models/money";
+import { Template } from "@/models/template";
 import { User } from "@/models/user";
-import { MoneyTypeTYpe } from "@/types/money";
-import { revalidatePath } from "next/cache";
 
-export async function create({
-  data,
-  type,
-}: {
-  data: FormData;
-  type: MoneyTypeTYpe;
-}) {
+export async function create(data: FormData) {
   // Get the user id from the session
   const session = (await getAuthSession()) as { user: { id: string } } | null;
   const userId = session?.user?.id;
 
   const amount = data.get("amount");
-  let oppositeUser = data.get("oppositeUser");
-  let description = data.get("description");
-  let date = data.get("date");
-  let lastDate = data.get("lastDate");
+  const oppositeUser = data.get("oppositeUser");
+  const description = data.get("description");
+  // TODO: find a better way if possible
+  const profit = data.get("type-profit");
+  const expense = data.get("type-expense");
 
-  // If its a deposit, change the inputs
-  if (type === "deposit") {
-    oppositeUser = `custom:${SITE_NAME} Software`;
-    description = "I'm starting using this software by depositing this amount.";
-    date = new Date().toDateString();
-  }
-
-  // Check if required fields are provided
-  if (!oppositeUser || !amount) {
+  // Check if the required fields are provided
+  if (!amount || !oppositeUser) {
     return {
       error: "User and amount are required",
-    };
-  }
-
-  // Check if the type is valid
-  if (!TYPES.includes(type as any)) {
-    return {
-      error: "Type of money is invalid",
     };
   }
 
@@ -81,19 +59,12 @@ export async function create({
     };
   }
 
-  // Check if the date is valid
-  if (isNaN(Date.parse(date as string))) {
-    return {
-      error: "Date is invalid",
-    };
-  }
-
   const userName = id ? (await User.findById(id))?.name : name;
 
-  // Create the money
-  const money = new Money({
+  // Create the template
+  const template = new Template({
     userId,
-    type,
+    type: profit ? "profit" : "expense",
     oppositeUser: {
       type: userType,
       id,
@@ -101,17 +72,14 @@ export async function create({
     },
     amount: Number(amount),
     description,
-    date: new Date(date as string),
-    lastDate: lastDate ? new Date(lastDate as string) : undefined,
-    createdBy: userId,
   });
 
-  await money.save();
+  await template.save();
 
   return {
     success: true,
     data: {
-      id: money._id,
+      id: template._id,
     },
   };
 }
