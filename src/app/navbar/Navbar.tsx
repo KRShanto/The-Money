@@ -6,11 +6,9 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import MenuToggle from "./MenuToggle";
 import { SITE_NAME } from "@/lib/constants";
 import NavLink from "./NavLink";
-import { AiFillBell } from "react-icons/ai";
-import NavButton from "./NavButton";
 import Image from "next/image";
 import UserImage from "@/../public/user-image.png";
-import { FaUserFriends } from "react-icons/fa";
+import { FaSave, FaUserFriends } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 import Notification from "./Notification";
 
@@ -51,6 +49,10 @@ export default async function Navbar() {
 
           {session ? (
             <>
+              <NavLink href="/template">
+                <FaSave className="text-3xl" title="Templates" />
+              </NavLink>
+
               <Notification />
 
               <NavLink href="/friends">

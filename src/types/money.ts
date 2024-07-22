@@ -3,9 +3,7 @@ export interface MoneyType {
   userId: string;
   oppositeUser: {
     type: "user" | "custom";
-    // if custom
     name?: string;
-    // if friend
     id?: string;
   };
   type: MoneyTypeTYpe;

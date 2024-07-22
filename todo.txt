@@ -1,1 +1,3 @@
 Feat - Recieve an image while creating new money records
+Feat - Currency conversion
+Feat - Profile
