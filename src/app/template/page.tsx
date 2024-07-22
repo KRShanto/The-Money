@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 import { FaEdit, FaInfo, FaPlus, FaTrash } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
+import DeleteTemplateButton from "./DeleteTemplateButton";
 
 export default async function Page() {
   const session = (await getAuthSession()) as {
@@ -65,9 +66,9 @@ export default async function Page() {
                 >
                   <MdEdit />
                 </Link>
-                <button className="text-red-500">
-                  <FaTrash />
-                </button>
+
+                <DeleteTemplateButton id={template.id} />
+
                 <Link
                   href={`/create?template=${template.id}`}
                   className="text-green-400"

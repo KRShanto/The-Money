@@ -1,3 +1,5 @@
 Feat - Recieve an image while creating new money records
 Feat - Currency conversion
 Feat - Profile
+Feat - Take user's birthday when creating account, then on his birthday, wish him and tell him the progress.
+Feat - On every new year 31st night, tell him the progress.
