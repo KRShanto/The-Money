@@ -9,6 +9,7 @@ import React from "react";
 import SubmitBtn from "./SubmitBtn";
 import Wrappar from "@/components/form/Wrappar";
 import Label from "@/components/form/Label";
+import TemplateType from "./TemplateType";
 
 export default async function Page() {
   // Check if the user is logged in
@@ -19,34 +20,14 @@ export default async function Page() {
   }
 
   return (
-    <Form title="Create a record" fullStyle>
+    <Form title="Create a template" fullStyle>
       <UserInput type={null} />
 
       <Input label="Amount" name="amount" type="number" />
 
       <Input label="Description" name="description" />
 
-      <div className="flex gap-10">
-        <div className="flex items-center gap-2">
-          <input
-            type="radio"
-            name="type-profit"
-            id="type-profit"
-            className="h-4 w-4"
-            defaultChecked
-          />
-          <Label htmlFor="type-profit">Profit</Label>
-        </div>
-        <div className="flex items-center gap-2">
-          <input
-            type="radio"
-            name="type-expense"
-            id="type-expense"
-            className="h-4 w-4"
-          />
-          <Label htmlFor="type-expense">Expense</Label>
-        </div>
-      </div>
+      <TemplateType />
 
       <SubmitBtn />
       <Cancel prev="/create">Back</Cancel>

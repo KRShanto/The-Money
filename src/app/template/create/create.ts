@@ -12,9 +12,7 @@ export async function create(data: FormData) {
   const amount = data.get("amount");
   const oppositeUser = data.get("oppositeUser");
   const description = data.get("description");
-  // TODO: find a better way if possible
-  const profit = data.get("type-profit");
-  const expense = data.get("type-expense");
+  const type = data.get("type");
 
   // Check if the required fields are provided
   if (!amount || !oppositeUser) {
@@ -64,7 +62,7 @@ export async function create(data: FormData) {
   // Create the template
   const template = new Template({
     userId,
-    type: profit ? "profit" : "expense",
+    type,
     oppositeUser: {
       type: userType,
       id,
