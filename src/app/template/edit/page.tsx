@@ -80,7 +80,7 @@ export default async function Page({
       <TemplateType defaultValue={template.type} />
 
       <SubmitBtn id={template.id} />
-      <Cancel prev="/create">Back</Cancel>
+      <Cancel prev="/template">Back</Cancel>
     </Form>
   );
 }

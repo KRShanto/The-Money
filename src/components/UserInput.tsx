@@ -20,7 +20,7 @@ export default function UserInput({
   defaultUser,
 }: {
   type: MoneyTypeTYpe | null;
-  defaultUser: UserItemType;
+  defaultUser?: UserItemType;
 }) {
   const [input, setInput] = useState(defaultUser && defaultUser.name);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();

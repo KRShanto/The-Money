@@ -30,7 +30,7 @@ export default async function Page() {
       <TemplateType />
 
       <SubmitBtn />
-      <Cancel prev="/create">Back</Cancel>
+      <Cancel prev="/template">Back</Cancel>
     </Form>
   );
 }

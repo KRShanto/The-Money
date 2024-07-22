@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function TemplateType({
   defaultValue = "expense",
 }: {
-  defaultValue: "profit" | "expense";
+  defaultValue?: "profit" | "expense";
 }) {
   const [type, setType] = useState<"profit" | "expense">(defaultValue);
 

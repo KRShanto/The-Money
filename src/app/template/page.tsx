@@ -8,6 +8,9 @@ import { FaEdit, FaInfo, FaPlus, FaTrash } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import DeleteTemplateButton from "./DeleteTemplateButton";
 
+const hoverClass =
+  "rounded-full p-2 transition-colors hover:bg-slate-800 active:scale-95";
+
 export default async function Page() {
   const session = (await getAuthSession()) as {
     user: {
@@ -62,7 +65,8 @@ export default async function Page() {
               <div className="flex w-[10%] items-center justify-evenly text-lg">
                 <Link
                   href={`/template/edit?id=${template.id}`}
-                  className="text-blue-400"
+                  className={cn("text-blue-400", hoverClass)}
+                  title="Edit template"
                 >
                   <MdEdit />
                 </Link>
@@ -71,7 +75,8 @@ export default async function Page() {
 
                 <Link
                   href={`/create?template=${template.id}`}
-                  className="text-green-400"
+                  className={cn("text-green-400", hoverClass)}
+                  title="Create a record using this template."
                 >
                   <FaPlus />
                 </Link>

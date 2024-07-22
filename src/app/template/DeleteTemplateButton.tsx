@@ -8,7 +8,7 @@ export default function DeleteTemplateButton({ id }: { id: string }) {
 
   return (
     <button
-      className="text-red-500 active:scale-95"
+      className="rounded-full p-2 text-red-500 transition-colors hover:bg-slate-800 active:scale-95"
       onClick={() => openPopup("DELETE_TEMPLATE", { id })}
     >
       <FaTrash />
