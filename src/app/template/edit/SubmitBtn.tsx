@@ -2,15 +2,15 @@
 
 import Submit from "@/components/form/Submit";
 import { useFormErrorStore } from "@/stores/formError";
-import { createTemplate } from "./createTemplate";
+import { editTemplate } from "./editTemplate";
 import { useRouter } from "next/navigation";
 
-export default function SubmitBtn() {
+export default function SubmitBtn({ id }: { id: string }) {
   const { showError } = useFormErrorStore();
   const router = useRouter();
 
   const handleSubmit = async (data: FormData) => {
-    const res = await createTemplate(data);
+    const res = await editTemplate({ id, data });
 
     if (res.error) {
       return showError(res.error);
@@ -21,5 +21,5 @@ export default function SubmitBtn() {
     router.refresh();
   };
 
-  return <Submit formAction={handleSubmit}>Create</Submit>;
+  return <Submit formAction={handleSubmit}>Update</Submit>;
 }

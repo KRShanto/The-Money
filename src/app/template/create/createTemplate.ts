@@ -4,7 +4,7 @@ import { getAuthSession } from "@/lib/auth";
 import { Template } from "@/models/template";
 import { User } from "@/models/user";
 
-export async function create(data: FormData) {
+export async function createTemplate(data: FormData) {
   // Get the user id from the session
   const session = (await getAuthSession()) as { user: { id: string } } | null;
   const userId = session?.user?.id;

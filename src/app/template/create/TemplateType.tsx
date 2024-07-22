@@ -3,8 +3,12 @@
 import Label from "@/components/form/Label";
 import { useState } from "react";
 
-export default function TemplateType() {
-  const [type, setType] = useState<"profit" | "expense">("expense");
+export default function TemplateType({
+  defaultValue = "expense",
+}: {
+  defaultValue: "profit" | "expense";
+}) {
+  const [type, setType] = useState<"profit" | "expense">(defaultValue);
 
   return (
     <div className="flex gap-10">

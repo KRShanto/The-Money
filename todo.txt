@@ -3,3 +3,4 @@ Feat - Currency conversion
 Feat - Profile
 Feat - Take user's birthday when creating account, then on his birthday, wish him and tell him the progress.
 Feat - On every new year 31st night, tell him the progress.
+Change - Remove the `name` field on oppositeUser if `id` is already there. This is bcz if the other user changes his name, then this would be a problem.

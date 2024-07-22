@@ -10,6 +10,7 @@ export interface Props {
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
+  defaultValue?: string | number;
   readOnly?: boolean;
   autoFocus?: boolean;
   className?: string;
@@ -24,6 +25,7 @@ export default function Input({
   placeholder,
   required,
   disabled,
+  defaultValue,
   readOnly,
   autoFocus,
   className,
@@ -38,13 +40,15 @@ export default function Input({
         name={name}
         id={name}
         defaultValue={
-          value
-            ? value
-            : type === "number"
-              ? 0
-              : type === "date"
-                ? new Date().toISOString().slice(0, 10)
-                : ""
+          defaultValue
+            ? defaultValue
+            : value
+              ? value
+              : type === "number"
+                ? 0
+                : type === "date"
+                  ? new Date().toISOString().slice(0, 10)
+                  : ""
         }
         placeholder={placeholder}
         required={required}

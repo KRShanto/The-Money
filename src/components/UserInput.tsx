@@ -15,11 +15,19 @@ import { MoneyTypeTYpe } from "@/types/money";
 
 const USER_SEARCH_TIMEOUT = 1000; // 1 second
 
-export default function UserInput({ type }: { type: MoneyTypeTYpe | null }) {
-  const [input, setInput] = useState("");
+export default function UserInput({
+  type,
+  defaultUser,
+}: {
+  type: MoneyTypeTYpe | null;
+  defaultUser: UserItemType;
+}) {
+  const [input, setInput] = useState(defaultUser && defaultUser.name);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
   const [users, setUsers] = useState<UserItemType[]>([]);
-  const [selectedUser, setSelectedUser] = useState<UserItemType | null>(null);
+  const [selectedUser, setSelectedUser] = useState<UserItemType | null>(
+    defaultUser || null,
+  );
   const [finalInputValue, setFinalInputValue] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -27,6 +35,18 @@ export default function UserInput({ type }: { type: MoneyTypeTYpe | null }) {
   useEffect(() => {
     setFinalInputValue(`custom:${input}`);
   }, [input]);
+
+  useEffect(() => {
+    if (!defaultUser) return;
+
+    if (defaultUser.id) {
+      setFinalInputValue(
+        `user:${defaultUser.id}:${defaultUser.isFriend ? "friend" : "not-friend"}`,
+      );
+    } else {
+      setFinalInputValue(`custom:${defaultUser.name}`);
+    }
+  }, [defaultUser]);
 
   function generateLabel() {
     switch (type) {

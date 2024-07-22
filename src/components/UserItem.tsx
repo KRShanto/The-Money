@@ -1,11 +1,10 @@
 import React from "react";
 import UserImage from "@/../public/user-image.png";
 import Image from "next/image";
-import { FaTimes } from "react-icons/fa";
 import { cn } from "@/lib/cn";
 
 export interface UserItemType {
-  id: string;
+  id?: string;
   image: string;
   name: string;
   isFriend: boolean;
