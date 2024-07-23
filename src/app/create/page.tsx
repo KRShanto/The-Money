@@ -12,6 +12,7 @@ import { UserType } from "@/types/user";
 import { Template } from "@/models/template";
 import { User } from "@/models/user";
 import { Friend } from "@/models/friend";
+import Checkbox from "@/components/form/Checkbox";
 
 export const options: {
   label: string;
@@ -76,6 +77,10 @@ export default async function Page({
 
         {(type === "loan" || type === "borrow") && (
           <Input label="Last date to pay back" name="lastDate" type="date" />
+        )}
+
+        {type !== "deposit" && (
+          <Checkbox label="Save as template" name="save-as-template" />
         )}
 
         <SubmitBtn

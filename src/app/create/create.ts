@@ -3,6 +3,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { SITE_NAME, TYPES } from "@/lib/constants";
 import { Money } from "@/models/money";
+import { Template } from "@/models/template";
 import { User } from "@/models/user";
 import { MoneyTypeTYpe } from "@/types/money";
 import { revalidatePath } from "next/cache";
@@ -23,6 +24,7 @@ export async function create({
   let description = data.get("description");
   let date = data.get("date");
   let lastDate = data.get("lastDate");
+  const saveAsTemplate = data.get("save-as-template");
 
   // If its a deposit, change the inputs
   if (type === "deposit") {
@@ -107,6 +109,18 @@ export async function create({
   });
 
   await money.save();
+
+  if (saveAsTemplate) {
+    const template = new Template({
+      userId,
+      type,
+      oppositeUser: money.oppositeUser,
+      amount: Number(amount),
+      description,
+    });
+
+    await template.save();
+  }
 
   return {
     success: true,
