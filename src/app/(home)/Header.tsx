@@ -4,6 +4,7 @@ import Filter from "./Filter";
 import ShowTypes from "./ShowTypes";
 import { BiFilter } from "react-icons/bi";
 import { useState } from "react";
+import Wallet from "./Wallet";
 
 export default function Header({
   money,
@@ -19,23 +20,27 @@ export default function Header({
 
   return (
     <>
-      <div className="flex items-center justify-end gap-5 px-14 py-5">
-        <ShowTypes />
+      <div className="flex items-center justify-between px-20 py-5">
+        <Wallet />
 
-        <button
-          className="btn txt-shadow bg-slate-700 text-xl shadow-md dark:bg-slate-700"
-          onClick={() => setShowFilter(!showFilter)}
-        >
-          <BiFilter />
-          Filter
-        </button>
+        <div className="flex gap-5 ">
+          <ShowTypes />
 
-        <Link
-          href="/create"
-          className="btn btn-green txt-shadow text-xl shadow-md"
-        >
-          + Create
-        </Link>
+          <button
+            className="btn txt-shadow bg-slate-700 text-xl shadow-md dark:bg-slate-700"
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            <BiFilter />
+            Filter
+          </button>
+
+          <Link
+            href="/create"
+            className="btn btn-green txt-shadow text-xl shadow-md"
+          >
+            + Create
+          </Link>
+        </div>
       </div>
 
       {showFilter && (

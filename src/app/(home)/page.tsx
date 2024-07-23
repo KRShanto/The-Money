@@ -4,7 +4,7 @@ import DisplayMoney from "./DisplayMoney";
 import { getAuthSession } from "@/lib/auth";
 import LandingPage from "./LandingPage";
 import { User } from "@/models/user";
-import { getCorrectType } from "@/actions/getMoneyInfo";
+import { getCorrectType } from "@/lib/getCorrectType";
 
 export default async function Page() {
   const session = (await getAuthSession()) as {

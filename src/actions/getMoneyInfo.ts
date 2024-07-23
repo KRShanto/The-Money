@@ -2,6 +2,7 @@
 
 import { getAuthSession } from "@/lib/auth";
 import { dbConnect } from "@/lib/dbConnect";
+import { getCorrectType } from "@/lib/getCorrectType";
 import { getDue } from "@/lib/getDue";
 import { Friend } from "@/models/friend";
 import { Money } from "@/models/money";
@@ -68,40 +69,6 @@ function getSummury({
   }
 
   return summury;
-}
-
-export async function getCorrectType({
-  type,
-  oppositeUserIsSame,
-}: {
-  type: MoneyTypeTYpe;
-  oppositeUserIsSame: boolean;
-}) {
-  let correctType: MoneyTypeTYpe;
-
-  switch (type) {
-    case "profit":
-      correctType = oppositeUserIsSame ? "expense" : "profit";
-      break;
-
-    case "expense":
-      correctType = oppositeUserIsSame ? "profit" : "expense";
-      break;
-
-    case "borrow":
-      correctType = oppositeUserIsSame ? "loan" : "borrow";
-      break;
-
-    case "loan":
-      correctType = oppositeUserIsSame ? "borrow" : "loan";
-      break;
-
-    case "deposit":
-      correctType = "deposit";
-      break;
-  }
-
-  return correctType;
 }
 
 export async function getMoneyInfo(id: string) {
