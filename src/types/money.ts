@@ -21,6 +21,7 @@ export interface MoneyType {
   updatedBy?: string;
   // last date of this money. Only applicable for loan and borrow
   lastDate?: Date;
+  history?: { amount: number; date: Date }[];
 }
 
 export type MoneyTypeTYpe = "income" | "expense" | "loan" | "borrow";

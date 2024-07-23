@@ -1,1 +1,2 @@
 Feat - Recieve an image while creating new money records
+Change - Change "Income" to "profile"

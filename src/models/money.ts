@@ -30,6 +30,12 @@ const moneySchema = new Schema<MoneyDocument>({
     type: Date,
     required: true,
   },
+  history: [
+    {
+      amount: Number,
+      date: Date,
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now(),
