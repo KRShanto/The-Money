@@ -58,7 +58,7 @@ export default function MoneyList({ moneyList }: { moneyList: MoneyType[] }) {
               <p className="w-[20%]">{money.description}</p>
 
               {/* Fetch the amount type (dollar/taka/euro) from settings */}
-              <p className="w-[10%]">$ {money.amount}</p>
+              <p className="w-[10%]">$ {money.amount.toLocaleString()}</p>
 
               <p
                 className={cn(
@@ -66,7 +66,7 @@ export default function MoneyList({ moneyList }: { moneyList: MoneyType[] }) {
                   money.type === "borrow" ? "text-red-500" : "text-yellow-400",
                 )}
               >
-                {due ? `$ ${due}` : null}
+                {due ? `$ ${due.toLocaleString()}` : null}
               </p>
 
               <p className="w-[20%]">

@@ -60,7 +60,7 @@ export default async function Page() {
               <p className="w-[40%]">{template.description}</p>
 
               {/* Fetch the amount type (dollar/taka/euro) from settings */}
-              <p className="w-[20%]">$ {template.amount}</p>
+              <p className="w-[20%]">$ {template.amount.toLocaleString()}</p>
 
               <div className="flex w-[10%] items-center justify-evenly text-lg">
                 <Link

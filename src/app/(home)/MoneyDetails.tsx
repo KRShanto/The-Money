@@ -141,7 +141,7 @@ export default function MoneyDetails() {
 
                 <div className="mt-5">
                   <h3 className="mb-1 text-lg font-semibold">Amount</h3>
-                  <p>$ {info.amount}</p>
+                  <p>$ {info.amount.toLocaleString()}</p>
                 </div>
 
                 <div className="mt-5">
