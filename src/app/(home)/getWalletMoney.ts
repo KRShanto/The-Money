@@ -34,6 +34,8 @@ export async function getWalletMoney() {
             type: money.type,
             oppositeUserIsSame: true,
           }),
+          history: money.history,
+          amount: money.amount,
         };
       } else {
         return money;
