@@ -11,6 +11,8 @@ import Input from "@/components/form/Input";
 import FormError from "@/components/form/FormError";
 import { returnMoney } from "./returnMoney";
 import { useFormErrorStore } from "@/stores/formError";
+import { useRouter } from "next/navigation";
+import { getDue } from "@/lib/getDue";
 
 interface InfoType {
   type: MoneyTypeTYpe;
@@ -29,6 +31,7 @@ interface InfoType {
 }
 
 export default function MoneyDetails() {
+  const router = useRouter();
   const { data, closePopup } = usePopupStore();
   const { id } = data;
   const [info, setInfo] = useState<InfoType | null>();
@@ -48,7 +51,7 @@ export default function MoneyDetails() {
   async function getDetails() {
     const info = await getMoneyInfo(id);
     setInfo(info as InfoType);
-    setReturnMoneyAmount(info.amount);
+    setReturnMoneyAmount(info.due);
   }
 
   async function returnMoneySubmit() {
@@ -62,6 +65,7 @@ export default function MoneyDetails() {
       showError(res.error);
     } else {
       closePopup();
+      router.refresh();
     }
   }
 
@@ -119,7 +123,19 @@ export default function MoneyDetails() {
                       className="h-4 w-4 rounded-full"
                       style={{ backgroundColor: getColor(info.type) }}
                     ></div>
-                    <p>{info.type.toLocaleUpperCase()}</p>
+                    <p>
+                      {(info.type === "borrow" || info.type === "loan") &&
+                      returnMoneyAmount === 0 ? (
+                        <>
+                          {" "}
+                          <span>{info.type.toLocaleUpperCase()}</span>{" "}
+                          {/* TODO: need suggestions*/}
+                          <span className="text-green-500">(COMPLETE)</span>
+                        </>
+                      ) : (
+                        info.type.toLocaleUpperCase()
+                      )}
+                    </p>
                   </div>
                 </div>
 
@@ -166,7 +182,7 @@ export default function MoneyDetails() {
             )}
 
             {/* Options */}
-            <div className="flex items-center justify-end gap-3">
+            <div className="mt-5 flex items-center justify-end gap-3">
               {returnMoneyUI ? (
                 <React.Fragment>
                   <button
@@ -186,14 +202,15 @@ export default function MoneyDetails() {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  {(info.type === "borrow" || info.type === "loan") && (
-                    <button
-                      className="rounded-md border border-green-400 p-4 py-1 text-green-400 active:scale-95"
-                      onClick={() => setReturnMoneyUI(true)}
-                    >
-                      {info.type === "loan" ? "Take" : "Return"}
-                    </button>
-                  )}
+                  {(info.type === "borrow" || info.type === "loan") &&
+                    returnMoneyAmount !== 0 && (
+                      <button
+                        className="rounded-md border border-green-400 p-4 py-1 text-green-400 active:scale-95"
+                        onClick={() => setReturnMoneyUI(true)}
+                      >
+                        {info.type === "loan" ? "Take" : "Return"}
+                      </button>
+                    )}
 
                   <button className="rounded-md border border-blue-400 p-4 py-1 text-blue-400 active:scale-95">
                     Edit

@@ -68,6 +68,10 @@ moneySchema.methods.purify = function (this: MoneyDocument) {
     createdBy: this.createdBy,
     updatedBy: this.updatedBy,
     lastDate: this.lastDate,
+    history: this.history?.map((history) => ({
+      amount: history.amount,
+      date: history.date,
+    })),
   };
 };
 

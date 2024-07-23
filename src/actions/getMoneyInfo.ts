@@ -2,6 +2,7 @@
 
 import { getAuthSession } from "@/lib/auth";
 import { dbConnect } from "@/lib/dbConnect";
+import { getDue } from "@/lib/getDue";
 import { Friend } from "@/models/friend";
 import { Money } from "@/models/money";
 import { User } from "@/models/user";
@@ -173,5 +174,6 @@ export async function getMoneyInfo(id: string) {
         money?.oppositeUser.id === session?.user.id.toString(),
       oppositeUserName: oppositeUser.name!,
     }),
+    due: getDue(money!),
   };
 }

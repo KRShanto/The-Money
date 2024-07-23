@@ -35,8 +35,6 @@ export async function returnMoney({
   // Check if the amount is greater than the actual amount
   if (amount > money.amount) amount = money.amount;
 
-  console.log("Money: ", money);
-
   const updatedMoney = await Money.findOneAndUpdate(
     { _id: id },
     {
@@ -45,8 +43,7 @@ export async function returnMoney({
     { new: true },
   );
 
-  console.log("Updated Money: ", updatedMoney);
-
+  // TODO: revalidation and router.refresh not working
   revalidatePath("/");
 
   return {
