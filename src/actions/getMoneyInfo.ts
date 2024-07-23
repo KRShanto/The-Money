@@ -64,7 +64,7 @@ function getSummury({
       break;
 
     case "deposit":
-      summury = "You started using this software this these deposit";
+      summury = "You started using this software with these deposit";
   }
 
   return summury;
