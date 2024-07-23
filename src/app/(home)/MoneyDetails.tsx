@@ -13,8 +13,10 @@ import { returnMoney } from "./returnMoney";
 import { useFormErrorStore } from "@/stores/formError";
 import { useRouter } from "next/navigation";
 import { getDue } from "@/lib/getDue";
+import { deleteMoney } from "./deleteMoney";
 
 interface InfoType {
+  id: string;
   type: MoneyTypeTYpe;
   description: string;
   amount: number;
@@ -182,7 +184,7 @@ export default function MoneyDetails() {
             )}
 
             {/* Options */}
-            <div className="mt-5 flex items-center justify-end gap-3">
+            <div className="mt-10 flex items-center justify-end gap-3">
               {returnMoneyUI ? (
                 <React.Fragment>
                   <button
@@ -216,8 +218,22 @@ export default function MoneyDetails() {
                     Edit
                   </button>
 
-                  <button className="rounded-md border border-red-500 p-4 py-1 text-red-500 active:scale-95">
+                  <button
+                    className="rounded-md border border-red-500 p-4 py-1 text-red-500 active:scale-95"
+                    onClick={async () => {
+                      await deleteMoney(info.id);
+                      closePopup();
+                      // TODO: refresh the page.
+                    }}
+                  >
                     Delete
+                  </button>
+
+                  <button
+                    className="rounded-md border border-slate-400 p-4 py-1 text-slate-300 active:scale-95"
+                    onClick={closePopup}
+                  >
+                    Close
                   </button>
                 </React.Fragment>
               )}

@@ -118,6 +118,7 @@ export async function getMoneyInfo(id: string) {
   }
 
   return {
+    id: money?._id,
     type: await getCorrectType({
       type: money?.type!,
       oppositeUserIsSame:
