@@ -214,9 +214,13 @@ export default function MoneyDetails() {
                       </button>
                     )}
 
-                  <button className="rounded-md border border-blue-400 p-4 py-1 text-blue-400 active:scale-95">
+                  <Link
+                    href={`/edit?id=${info.id}`}
+                    className="rounded-md border border-blue-400 p-4 py-1 text-blue-400 active:scale-95"
+                    onClick={closePopup}
+                  >
                     Edit
-                  </button>
+                  </Link>
 
                   <button
                     className="rounded-md border border-red-500 p-4 py-1 text-red-500 active:scale-95"

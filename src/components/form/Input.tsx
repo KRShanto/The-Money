@@ -10,7 +10,7 @@ export interface Props {
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
-  defaultValue?: string | number;
+  defaultValue?: any;
   readOnly?: boolean;
   autoFocus?: boolean;
   className?: string;

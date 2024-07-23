@@ -13,7 +13,7 @@ import { Template } from "@/models/template";
 import { User } from "@/models/user";
 import { Friend } from "@/models/friend";
 
-const options: {
+export const options: {
   label: string;
   value: MoneyTypeTYpe;
 }[] = [
