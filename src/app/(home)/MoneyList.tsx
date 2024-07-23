@@ -7,6 +7,7 @@ import { FaInfo } from "react-icons/fa";
 import moment from "moment";
 import { useSearchParams } from "next/navigation";
 import { getDue } from "@/lib/getDue";
+import { MdMoreHoriz } from "react-icons/md";
 
 export default function MoneyList({ moneyList }: { moneyList: MoneyType[] }) {
   const { openPopup } = usePopupStore();
@@ -74,10 +75,10 @@ export default function MoneyList({ moneyList }: { moneyList: MoneyType[] }) {
               </p>
 
               <button
-                className="rounded-full border p-1"
+                className="rounded-full p-[.2rem] text-xl transition-colors hover:bg-slate-700"
                 onClick={() => openMoneyDetails(money)}
               >
-                <FaInfo />
+                <MdMoreHoriz />
               </button>
             </div>
           );
