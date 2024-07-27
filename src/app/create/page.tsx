@@ -14,7 +14,7 @@ import { User } from "@/models/user";
 import { Friend } from "@/models/friend";
 import Checkbox from "@/components/form/Checkbox";
 
-export const options: {
+const options: {
   label: string;
   value: MoneyTypeTYpe;
 }[] = [
